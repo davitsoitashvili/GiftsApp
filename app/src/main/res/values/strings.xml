@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">GiftsApp</string>
+    <string name="sign_in">Sign In</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
