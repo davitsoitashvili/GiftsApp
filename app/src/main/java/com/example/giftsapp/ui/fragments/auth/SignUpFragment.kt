@@ -3,13 +3,13 @@ package com.example.giftsapp.ui.fragments.auth
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import com.example.giftsapp.App
 import com.example.giftsapp.R
 import com.example.giftsapp.databinding.FragmentSignupBinding
 import com.example.giftsapp.navigation.extensions.navigate
 import com.example.giftsapp.services.FirebaseServices.createNewUser
-import com.example.giftsapp.ui.fragments.dashboard.DashboardFragment
+import com.example.giftsapp.services.FirebaseServices.sendEmailVerification
+import com.example.giftsapp.tools.showToastMessage
 
 class SignUpFragment : Fragment(R.layout.fragment_signup) {
     private lateinit var binding: FragmentSignupBinding
@@ -34,7 +34,12 @@ class SignUpFragment : Fragment(R.layout.fragment_signup) {
                 val password = signUpInputPasswordView.text.toString().trim()
                 createNewUser(requireActivity(), emailAddress, password) {
                     if (it) {
-                        navigate(R.id.navigateToSignInFragment)
+                        sendEmailVerification {
+                            if (it) {
+                                navigate(R.id.navigateToSignInFragment)
+                                showToastMessage("Email Verification Link is sent to your email, please check !")
+                            }
+                        }
                     }
                 }
             }

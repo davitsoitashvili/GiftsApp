@@ -8,6 +8,7 @@ import com.example.giftsapp.R
 import com.example.giftsapp.databinding.FragmentSigninBinding
 import com.example.giftsapp.navigation.extensions.navigate
 import com.example.giftsapp.services.FirebaseServices.signInUser
+import com.example.giftsapp.tools.showToastMessage
 
 class SignInFragment : Fragment(R.layout.fragment_signin) {
     private lateinit var binding: FragmentSigninBinding
@@ -15,14 +16,22 @@ class SignInFragment : Fragment(R.layout.fragment_signin) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSigninBinding.bind(view)
-        if (isUserSignedIn()) {
+        if (isUserEmailVerified()) {
             navigate(R.id.dashboardFragment)
         }
         navigateToSignUp()
         signIn()
     }
 
-    private fun isUserSignedIn() = App.app!!.getFirebaseAuth().currentUser?.email != null
+    private fun isUserEmailVerified(): Boolean {
+        if (App.app!!.getFirebaseAuth().currentUser?.email != null) {
+            if (App.app!!.getFirebaseAuth().currentUser!!.isEmailVerified) {
+                return true
+            }
+            return false
+        }
+        return false
+    }
 
     private fun navigateToSignUp() {
         binding.navigateToSignUpBtn.setOnClickListener {
@@ -36,8 +45,10 @@ class SignInFragment : Fragment(R.layout.fragment_signin) {
                 val email = signInInputEmailView.text.toString().trim()
                 val password = signInInputPasswordView.text.toString().trim()
                 signInUser(requireActivity(), email, password) {
-                    if (it) {
+                    if (it && isUserEmailVerified()) {
                         navigate(R.id.navigateToDashboardFragment)
+                    } else {
+                        showToastMessage("Account is not verified!, please check your email to confirm your account!")
                     }
                 }
             }

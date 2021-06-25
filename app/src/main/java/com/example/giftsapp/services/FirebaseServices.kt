@@ -12,7 +12,6 @@ object FirebaseServices {
             ) { task ->
                 if (task.isSuccessful) {
                     userIsCreated(true)
-                    showToastMessage("Account has been created successfully")
                 } else {
                     showToastMessage(task.exception?.message!!)
                 }
@@ -23,11 +22,20 @@ object FirebaseServices {
         App.app!!.getFirebaseAuth().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(activity) { task ->
                 if (task.isSuccessful) {
-                    showToastMessage("Signed In Successfully")
                     isUserSignedIn(true)
                 } else {
                     showToastMessage(task.exception?.message!!)
                 }
             }
+    }
+
+     fun sendEmailVerification(isEmailAddressVerified : (Boolean) -> Unit) {
+        App.app!!.getFirebaseAuth().currentUser?.sendEmailVerification()?.addOnCompleteListener {
+            if (it.isSuccessful) {
+                isEmailAddressVerified(true)
+            } else {
+                showToastMessage(it.exception!!.message!!)
+            }
+        }
     }
 }
