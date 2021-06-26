@@ -14,6 +14,9 @@
         <action
             android:id="@+id/navigateToDashboardFragment"
             app:destination="@id/dashboardFragment"/>
+        <action
+            android:id="@+id/navigateToResetPasswordFragment"
+            app:destination="@id/resetPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -29,6 +32,14 @@
         android:label="DashboardFragment">
         <action
             android:id="@+id/navigateToSignInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.example.giftsapp.ui.fragments.auth.ResetPasswordFragment"
+        android:label="ResetPasswordFragment" >
+        <action
+            android:id="@+id/navigateToSignInFragmentAfterReset"
             app:destination="@id/signInFragment" />
     </fragment>
 </navigation>

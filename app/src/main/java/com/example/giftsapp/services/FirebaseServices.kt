@@ -38,4 +38,25 @@ object FirebaseServices {
             }
         }
     }
+
+    fun changeUserPassword(password : String) {
+        App.app!!.getFirebaseAuth().currentUser?.updatePassword(password)?.addOnCompleteListener {
+            if (it.isSuccessful) {
+                showToastMessage("Password has changed successfully")
+            } else {
+                showToastMessage(it.exception!!.message!!)
+            }
+        }
+    }
+
+    fun resetUserPassword(email : String, isResetPasswordEmailSent : (Boolean) -> Unit) {
+        App.app!!.getFirebaseAuth().sendPasswordResetEmail(email).addOnCompleteListener {
+            if (it.isSuccessful) {
+                showToastMessage("Password reset link has been sent to email, please check!")
+                isResetPasswordEmailSent(true)
+            } else {
+                showToastMessage(it.exception!!.message!!)
+            }
+        }
+    }
 }
