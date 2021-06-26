@@ -21,6 +21,7 @@ class SignInFragment : Fragment(R.layout.fragment_signin) {
         }
         navigateToSignUp()
         signIn()
+        forgotPassword()
     }
 
     private fun isUserEmailVerified(): Boolean {
@@ -54,4 +55,11 @@ class SignInFragment : Fragment(R.layout.fragment_signin) {
             }
         }
     }
+
+    private fun forgotPassword() {
+        binding.forgotPasswordView.setOnClickListener {
+            navigate(R.id.navigateToResetPasswordFragment)
+        }
+    }
+
 }
