@@ -7,4 +7,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="dashboard">Dashboard</string>
     <string name="sign_out">Sign Out</string>
+    <string name="comments">Comments</string>
+    <string name="post">Post</string>
+    <string name="post_owner">Post Owner</string>
+    <string name="back">Back</string>
 </resources>
