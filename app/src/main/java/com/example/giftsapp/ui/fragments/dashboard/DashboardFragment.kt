@@ -15,7 +15,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDashboardBinding.bind(view)
-        binding.userTextView.text = "Welcome ${App.app!!.getFirebaseAuth().currentUser?.email}"
+        //binding.userTextView.text = "Welcome ${App.app!!.getFirebaseAuth().currentUser?.email}"
         signOut()
     }
 
