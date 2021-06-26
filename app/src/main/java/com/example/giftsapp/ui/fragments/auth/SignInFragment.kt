@@ -9,6 +9,13 @@ import com.example.giftsapp.databinding.FragmentSigninBinding
 import com.example.giftsapp.navigation.extensions.navigate
 import com.example.giftsapp.services.FirebaseServices.signInUser
 import com.example.giftsapp.tools.showToastMessage
+import com.example.giftsapp.tools.validators.InputValidationException
+import com.example.giftsapp.tools.validators.InputValidators.validateOnEmailFormat
+import com.example.giftsapp.tools.validators.InputValidators.validateOnEmptyInput
+import com.example.giftsapp.tools.validators.InputValidators.validateOnPasswordConfirmationMatch
+import com.example.giftsapp.tools.validators.InputValidators.validateOnPasswordContainsChar
+import com.example.giftsapp.tools.validators.InputValidators.validateOnPasswordContainsDigit
+import com.example.giftsapp.tools.validators.InputValidators.validateOnPasswordLength
 
 class SignInFragment : Fragment(R.layout.fragment_signin) {
     private lateinit var binding: FragmentSigninBinding
@@ -43,8 +50,21 @@ class SignInFragment : Fragment(R.layout.fragment_signin) {
     private fun signIn() {
         binding.apply {
             signInBtn.setOnClickListener {
+
+                try {
+                    validateOnEmptyInput(signInInputEmailView)
+                    validateOnEmptyInput(signInInputPasswordView)
+                    validateOnEmailFormat(signInInputEmailView)
+                    validateOnPasswordContainsChar(signInInputPasswordView)
+                    validateOnPasswordContainsDigit(signInInputPasswordView)
+                    validateOnPasswordLength(signInInputPasswordView)
+                }catch (exception : InputValidationException) {
+                    return@setOnClickListener
+                }
+
                 val email = signInInputEmailView.text.toString().trim()
                 val password = signInInputPasswordView.text.toString().trim()
+
                 signInUser(requireActivity(), email, password) {
                     if (it && isUserEmailVerified()) {
                         navigate(R.id.navigateToDashboardFragment)
