@@ -7,6 +7,9 @@ import com.example.giftsapp.R
 import com.example.giftsapp.databinding.FragmentResetPasswordBinding
 import com.example.giftsapp.navigation.extensions.navigate
 import com.example.giftsapp.services.FirebaseServices.resetUserPassword
+import com.example.giftsapp.tools.validators.InputValidationException
+import com.example.giftsapp.tools.validators.InputValidators.validateOnEmailFormat
+import com.example.giftsapp.tools.validators.InputValidators.validateOnEmptyInput
 
 class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
     private lateinit var binding: FragmentResetPasswordBinding
@@ -19,6 +22,12 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
     private fun resetPassword() {
         with(binding) {
             resetPasswordBtn.setOnClickListener {
+                try {
+                    validateOnEmptyInput(inputEmailAddressView)
+                    validateOnEmailFormat(inputEmailAddressView)
+                }catch (exception : InputValidationException) {
+                    return@setOnClickListener
+                }
                 val emailAddress = inputEmailAddressView.text.toString().trim()
                 resetUserPassword(emailAddress) {
                     if (it) {
