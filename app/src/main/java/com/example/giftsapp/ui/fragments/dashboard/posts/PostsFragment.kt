@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.giftsapp.R
 import com.example.giftsapp.databinding.FragmentPostsBinding
 import com.example.giftsapp.models.Post
+import com.example.giftsapp.tools.showToastMessage
 import com.example.giftsapp.ui.adapters.PostsAdapter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -27,7 +28,23 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
 
     override fun onResume() {
         super.onResume()
-        myRef.addValueEventListener(valueListener)
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                posts = mutableListOf()
+                snapshot.children.forEach {
+                    it?.children?.forEach {
+                        val post: Post = it.getValue(Post::class.java)!!
+                        posts.add(post)
+                    }
+                    postsAdapter.updatePosts(posts)
+                    postsAdapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                showToastMessage(error.message)
+            }
+        })
     }
 
     private fun initPostAdapter() {
@@ -35,23 +52,6 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
         with(binding) {
             postsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             postsRecyclerView.adapter = postsAdapter
-        }
-    }
-
-    private val valueListener = object : ValueEventListener {
-        override fun onDataChange(snapshot: DataSnapshot) {
-            posts = mutableListOf()
-            snapshot.children.forEach {
-                it?.children?.forEach {
-                    val post: Post = it.getValue(Post::class.java)!!
-                    posts.add(post)
-                }
-                postsAdapter.updatePosts(posts)
-                postsAdapter.notifyDataSetChanged()
-            }
-        }
-
-        override fun onCancelled(error: DatabaseError) {
         }
     }
 }
