@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.giftsapp.R
 import com.example.giftsapp.databinding.FragmentDashboardBinding
-import com.example.giftsapp.navigation.extensions.navigate
+import com.example.giftsapp.tools.extensions.navigate
 import com.example.giftsapp.ui.adapters.DashboardPagerAdapter
 
 class DashboardFragment : Fragment(R.layout.fragment_dashboard) {

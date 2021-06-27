@@ -19,4 +19,8 @@
     <string name="reset_password">Reset Password</string>
     <string name="type_email_address">Type Email Address</string>
     <string name="reset">Reset</string>
+    <string name="create_new_post">Create New Post</string>
+    <string name="type_post_title">Type post title</string>
+    <string name="type_post_description">Type post description</string>
+    <string name="create">Create</string>
 </resources>

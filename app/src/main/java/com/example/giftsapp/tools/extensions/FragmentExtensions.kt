@@ -1,4 +1,4 @@
-package com.example.giftsapp.navigation.extensions
+package com.example.giftsapp.tools.extensions
 
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
