@@ -6,13 +6,12 @@ import androidx.fragment.app.Fragment
 import com.example.giftsapp.App
 import com.example.giftsapp.R
 import com.example.giftsapp.databinding.FragmentSigninBinding
-import com.example.giftsapp.navigation.extensions.navigate
 import com.example.giftsapp.services.FirebaseServices.signInUser
+import com.example.giftsapp.tools.extensions.navigate
 import com.example.giftsapp.tools.showToastMessage
 import com.example.giftsapp.tools.validators.InputValidationException
 import com.example.giftsapp.tools.validators.InputValidators.validateOnEmailFormat
 import com.example.giftsapp.tools.validators.InputValidators.validateOnEmptyInput
-import com.example.giftsapp.tools.validators.InputValidators.validateOnPasswordConfirmationMatch
 import com.example.giftsapp.tools.validators.InputValidators.validateOnPasswordContainsChar
 import com.example.giftsapp.tools.validators.InputValidators.validateOnPasswordContainsDigit
 import com.example.giftsapp.tools.validators.InputValidators.validateOnPasswordLength

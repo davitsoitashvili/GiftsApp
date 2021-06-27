@@ -5,9 +5,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.giftsapp.R
 import com.example.giftsapp.databinding.FragmentSignupBinding
-import com.example.giftsapp.navigation.extensions.navigate
 import com.example.giftsapp.services.FirebaseServices.createNewUser
 import com.example.giftsapp.services.FirebaseServices.sendEmailVerification
+import com.example.giftsapp.tools.extensions.navigate
 import com.example.giftsapp.tools.showToastMessage
 import com.example.giftsapp.tools.validators.InputValidationException
 import com.example.giftsapp.tools.validators.InputValidators.validateOnEmailFormat
