@@ -53,4 +53,18 @@ object InputValidators {
         passwordEditText.error = "Password should contains digit!"
         throw InputValidationException()
     }
+
+    fun validateOnPostTitleLength(postTitleEditText : EditText) {
+        if (postTitleEditText.text.toString().length < 5) {
+            postTitleEditText.error = "Post title should contains minimum 5 char!"
+            throw InputValidationException()
+        }
+    }
+
+    fun validateOnPostDescriptionLength(postDescriptionEditText : EditText) {
+        if (postDescriptionEditText.text.toString().length < 12) {
+            postDescriptionEditText.error = "Post description should contains minimum 12 char!"
+            throw InputValidationException()
+        }
+    }
 }
