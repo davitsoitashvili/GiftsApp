@@ -29,7 +29,7 @@ class ProfileFragment(val isSignedOut: (Boolean) -> Unit) : Fragment(R.layout.fr
     @SuppressLint("SetTextI18n")
     private fun displayUserEmail() {
         binding.userEmailAddressView.text =
-            "Email Address ${App.app!!.getFirebaseAuth().currentUser?.email}"
+            "Email Address \n ${App.app!!.getFirebaseAuth().currentUser?.email}"
     }
 
     private fun changePassword() {

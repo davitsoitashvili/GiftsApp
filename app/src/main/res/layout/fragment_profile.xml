@@ -3,6 +3,7 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@drawable/gradient_background"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -12,7 +13,6 @@
         android:layout_height="wrap_content">
 
     <TextView
-        android:textColor="@color/black"
         android:layout_marginTop="50dp"
         android:id="@+id/userEmailAddressView"
         android:textSize="20sp"
@@ -21,50 +21,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/changePasswordLabelView"
-        android:layout_marginTop="150dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:gravity="center"
-        android:textSize="23sp"
-        android:text="@string/change_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/changePasswordLabelView"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:text="@string/change_password"
+            android:textSize="23sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:hint="@string/type_password"
-        android:layout_marginTop="30dp"
-        android:id="@+id/changePasswordInputView"
-        android:inputType="textPassword"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/changePasswordInputView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:drawableStart="@drawable/custom_lock_icon"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:background="@drawable/custom_input"
+            android:hint="@string/type_password"
+            android:inputType="textPassword"
+            android:textSize="20sp" />
 
-    <EditText
-        android:layout_marginTop="20dp"
-        android:hint="@string/type_confirm_password"
-        android:id="@+id/change_password_confirmation_input_view"
-        android:inputType="textPassword"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <EditText
+            android:layout_marginTop="20dp"
+            android:hint="@string/type_confirm_password"
+            android:drawableStart="@drawable/custom_lock_icon"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:background="@drawable/custom_input"
+            android:id="@+id/change_password_confirmation_input_view"
+            android:inputType="textPassword"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_gravity="center"
         android:text="@string/save"
+        android:background="@drawable/custome_button"
+        android:textColor="#29323c"
         android:id="@+id/changePasswordBtn"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
         android:id="@+id/signOutBtn"
         android:text="@string/sign_out"
+        android:background="@drawable/custome_button2"
+        android:textColor="#29323c"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
