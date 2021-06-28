@@ -9,12 +9,13 @@ import com.example.giftsapp.databinding.FragmentPostsBinding
 import com.example.giftsapp.models.Post
 import com.example.giftsapp.tools.showToastMessage
 import com.example.giftsapp.ui.adapters.PostsAdapter
+import com.example.giftsapp.ui.fragments.dashboard.posts.comments.CommentsFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class PostsFragment : Fragment(R.layout.fragment_posts) {
+class PostsFragment : Fragment(R.layout.fragment_posts), PostCommentCallback {
     private lateinit var binding: FragmentPostsBinding
     private lateinit var posts: MutableList<Post>
     private lateinit var postsAdapter: PostsAdapter
@@ -48,10 +49,27 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
     }
 
     private fun initPostAdapter() {
-        postsAdapter = PostsAdapter()
+        postsAdapter = PostsAdapter {
+            openCommentsFragment(it)
+        }
         with(binding) {
             postsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             postsRecyclerView.adapter = postsAdapter
+        }
+    }
+
+    private fun openCommentsFragment(post: Post) {
+        binding.commentsFragmentContainer.visibility = View.VISIBLE
+        binding.postsRecyclerView.visibility = View.GONE
+        childFragmentManager.beginTransaction()
+            .replace(R.id.commentsFragmentContainer, CommentsFragment.createInstance(this,post))
+            .addToBackStack("CommentsFragment").commit()
+    }
+
+    override fun closedComments(closed : Boolean) {
+        if (closed) {
+            binding.commentsFragmentContainer.visibility = View.GONE
+            binding.postsRecyclerView.visibility = View.VISIBLE
         }
     }
 }

@@ -23,4 +23,7 @@
     <string name="type_post_title">Type post title</string>
     <string name="type_post_description">Type post description</string>
     <string name="create">Create</string>
+    <string name="close">Close</string>
+    <string name="type_comment">Type comment</string>
+    <string name="send">Send</string>
 </resources>

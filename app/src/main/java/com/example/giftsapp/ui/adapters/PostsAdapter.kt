@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.giftsapp.databinding.PostRecyclerItemBinding
 import com.example.giftsapp.models.Post
 
-class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
+class PostsAdapter(private val getPostCallback: (Post) -> Unit) :
+    RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
     private var posts: List<Post> = mutableListOf()
 
     fun updatePosts(posts: List<Post>) {
@@ -23,6 +24,7 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = posts[position]
         holder.onBindPost(post)
+        holder.onPostClick(post, getPostCallback)
     }
 
     override fun getItemCount() = posts.size
@@ -30,12 +32,18 @@ class PostsAdapter : RecyclerView.Adapter<PostsAdapter.PostViewHolder>() {
     class PostViewHolder(val view: PostRecyclerItemBinding) : RecyclerView.ViewHolder(view.root) {
         @SuppressLint("SetTextI18n")
         fun onBindPost(post: Post) {
-          with(view) {
-              postTitleView.text = "Title : ${post.title}"
-              postDescriptionView.text = "Description : ${post.description}"
-              postAuthorView.text = "Author ${post.author}"
-              postCreationTime.text = "Created At ${post.createdAt}"
-          }
+            with(view) {
+                postTitleView.text = "Title : ${post.title}"
+                postDescriptionView.text = "Description : ${post.description}"
+                postAuthorView.text = "Author ${post.author}"
+                postCreationTime.text = "Created At ${post.createdAt}"
+            }
+        }
+
+        fun onPostClick(post: Post, postCallback: (Post) -> Unit) {
+            view.postView.setOnClickListener {
+                postCallback(post)
+            }
         }
     }
 }

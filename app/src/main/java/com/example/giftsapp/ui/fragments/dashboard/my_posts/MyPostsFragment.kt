@@ -34,7 +34,7 @@ class MyPostsFragment : Fragment(R.layout.fragment_my_posts) {
     }
 
     private fun initPostAdapter() {
-        postsAdapter = PostsAdapter()
+        postsAdapter = PostsAdapter {}
         with(binding) {
             myPostsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             myPostsRecyclerView.adapter = postsAdapter
