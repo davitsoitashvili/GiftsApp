@@ -17,6 +17,7 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentResetPasswordBinding.bind(view)
         resetPassword()
+        navigateToSignIn()
     }
 
     private fun resetPassword() {
@@ -31,10 +32,16 @@ class ResetPasswordFragment : Fragment(R.layout.fragment_reset_password) {
                 val emailAddress = inputEmailAddressView.text.toString().trim()
                 resetUserPassword(emailAddress) {
                     if (it) {
-                        navigate(R.id.navigateToSignInFragmentAfterReset)
+                        navigate(R.id.navigateToSignInFragmentFromReset)
                     }
                 }
             }
+        }
+    }
+
+    private fun navigateToSignIn() {
+        binding.navigateToSignInBtn.setOnClickListener {
+            navigate(R.id.navigateToSignInFragmentFromReset)
         }
     }
 }
