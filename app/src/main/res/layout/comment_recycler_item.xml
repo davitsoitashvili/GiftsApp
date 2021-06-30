@@ -7,7 +7,7 @@
 
     <TextView
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColorHint="#797979"
         android:id="@+id/commentTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:textColor="@android:color/black"
+        android:textColorHint="#797979"
         android:textSize="15sp"
         android:id="@+id/commentAuthorView"
         android:layout_width="0dp"
@@ -38,7 +38,7 @@
 
     <View
         android:layout_marginHorizontal="5dp"
-        android:background="@color/black"
+        android:textColorHint="#797979"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/commentAuthorView"

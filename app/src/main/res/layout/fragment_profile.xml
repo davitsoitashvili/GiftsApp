@@ -25,6 +25,7 @@
             android:id="@+id/changePasswordLabelView"
             android:layout_width="match_parent"
             android:layout_height="43dp"
+            android:textColor="#797979"
             android:layout_marginTop="150dp"
             android:gravity="center"
             android:text="@string/change_password"
